@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Feedback</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="feedback-content">
+
+  <div class="feedback-wrapper">
+
+    <!-- Logo Container -->
+    <div class="logo-container">
+      <img src="assets/logo/DoeminantPizza_LOGO1.png" alt="Doeminant Pizza Logo" class="feedback-logo" />
+    </div>
+
+    <!-- Title -->
+    <h2 class="title">Rate Your Experience</h2>
+    <p class="subtitle">How satisfied are you with our pizza and app?</p>
+
+    <!-- Star Rating -->
+    <div class="rating-section">
+      <app-star-rating [(value)]="rating" [size]="32"></app-star-rating>
+    </div>
+
+    <!-- Tags -->
+    <div class="tags-section">
+      <h3>What did you like?</h3>
+      <ion-chip *ngFor="let tag of tags"
+                (click)="toggleTag(tag)"
+                [color]="selectedTags.includes(tag) ? 'warning' : ''"
+                [outline]="!selectedTags.includes(tag)"
+                class="tag-chip">
+        {{ tag }}
+      </ion-chip>
+    </div>
+
+    <!-- Comments -->
+    <div class="comment-box">
+      <ion-item lines="none">
+        <ion-label position="stacked" class="comment-label">Additional Comments</ion-label>
+        <ion-textarea [(ngModel)]="comment" placeholder="Tell us more about your experience..." autoGrow="true"></ion-textarea>
+      </ion-item>
+    </div>
+
+    <!-- Submit Button -->
+    <ion-button expand="block" class="submit-btn" (click)="submit()">
+      SUBMIT FEEDBACK
+    </ion-button>
+  </div>
+
+</ion-content>

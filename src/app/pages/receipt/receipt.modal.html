@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Order Success</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="page-padding">
+  <ion-item>
+    <ion-label>Order #: {{ orderNumber }}</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label>{{ date | date:'medium' }}</ion-label>
+  </ion-item>
+
+  <div style="margin:12px 0;">
+    <div *ngFor="let item of orders.items$ | async">
+      <div>{{ item.pizza.name }} ({{ item.size }}) - ₱ {{ item.pizza.price }} x {{ item.quantity }}</div>
+    </div>
+  </div>
+
+  <h2>Total: ₱ {{ orders.total() }}</h2>
+
+  <div style="display:flex; gap:12px; margin-top:12px;">
+    <ion-button fill="outline" (click)="close()">Close</ion-button>
+    <ion-button color="secondary" (click)="goToReceiptPage()">Open Full Receipt</ion-button>
+  </div>
+</ion-content>

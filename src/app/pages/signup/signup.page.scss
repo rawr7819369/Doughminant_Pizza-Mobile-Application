@@ -1,0 +1,148 @@
+/* ===== Ensure full-screen layout ===== */
+:host,
+ion-content,
+.signup-content {
+  height: 100%;
+  width: 100%;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+ion-content {
+  --background: linear-gradient(180deg, #ff6a00, #ffb347);
+}
+
+/* ===== Background container ===== */
+.signup-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* ===== Wrapper (white card) ===== */
+.signup-wrapper {
+  background: #fff8f0;
+  border-radius: 25px;
+  padding: 40px 30px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+
+  /* Center vertically like login.page.scss */
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: auto;
+}
+
+
+/* ===== Logo section ===== */
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  width: 110px;
+  height: auto;
+}
+
+.brand-name {
+  color: #d35400;
+  font-weight: bold;
+  font-size: 22px;
+  margin-top: 8px;
+}
+
+/* ===== Welcome text ===== */
+.welcome-text {
+  color: #b23b00;
+  font-weight: 700;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+/* ===== Inputs ===== */
+.input-item {
+  margin: 12px 0;
+  border: 1.5px solid #ff6a00;
+  border-radius: 12px;
+  --background: #fff;
+}
+
+ion-input {
+  padding-left: 10px;
+  --background: #fff !important;
+  --color: #000;
+}
+
+/* Remove gray autofill background (Chrome/Safari) */
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active {
+  transition: background-color 9999s ease-in-out 0s !important;
+  -webkit-text-fill-color: #000 !important;
+  caret-color: #000 !important;
+}
+
+/* ===== Icons ===== */
+ion-icon {
+  color: #ff6a00;
+}
+
+/* ===== Signup button ===== */
+.signup-btn {
+  margin-top: 20px;
+  border-radius: 12px;
+  background-color: #d32f2f;
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 4px 8px rgba(211, 47, 47, 0.3);
+}
+
+/* ===== Login link ===== */
+.login-text {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.login-text a {
+  color: #ff6a00;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* ===== Responsive adjustments ===== */
+@media (max-width: 480px) {
+  .signup-wrapper {
+    padding: 28px 20px;
+    border-radius: 20px;
+  }
+
+  .brand-name {
+    font-size: 20px;
+  }
+
+  .welcome-text {
+    font-size: 18px;
+  }
+}

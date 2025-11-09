@@ -1,0 +1,14 @@
+<div class="error-state">
+  <ion-icon [name]="icon" class="error-icon"></ion-icon>
+  <h3 class="error-title">{{ title }}</h3>
+  <p class="error-message">{{ message }}</p>
+  <ion-button 
+    *ngIf="showRetry"
+    color="warning"
+    (click)="onRetry()"
+    [attr.aria-label]="retryLabel">
+    <ion-icon name="refresh-outline" slot="start"></ion-icon>
+    {{ retryLabel }}
+  </ion-button>
+</div>
+

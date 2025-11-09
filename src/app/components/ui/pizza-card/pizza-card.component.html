@@ -1,0 +1,56 @@
+<div class="pizza-card" [routerLink]="['/pizza', pizza.id]">
+  <!-- Trust Badges -->
+  <div class="trust-badges" *ngIf="showBadges">
+    <span class="badge best-seller-badge" *ngIf="pizza.rating >= 4.8">
+      ⭐ Best Seller
+    </span>
+    <span class="badge chef-badge" *ngIf="pizza.id === 5">
+      👨‍🍳 Chef's Choice
+    </span>
+    <span class="badge new-badge" *ngIf="pizza.id === 1">
+      🆕 New
+    </span>
+  </div>
+  
+  <img [src]="pizza.img" [alt]="pizza.name" class="pizza-image" />
+  
+  <div class="pizza-info">
+    <div class="pizza-header">
+      <h3 class="pizza-name">{{ pizza.name }}</h3>
+      <ion-icon
+        [name]="isFavorite ? 'heart' : 'heart-outline'"
+        [class.favorited]="isFavorite"
+        (click)="onFavoriteClick($event)"
+        class="heart-icon"
+        [attr.aria-label]="isFavorite ? 'Remove from favorites' : 'Add to favorites'"
+        role="button"
+        tabindex="0">
+      </ion-icon>
+    </div>
+    
+    <p class="offer">Offer valid today only</p>
+    
+    <div class="details">
+      <span>{{ pizza.time }}</span>
+      <span class="rating">
+        {{ pizza.rating }} <ion-icon name="star"></ion-icon>
+      </span>
+    </div>
+    
+    <div class="price-row">
+      <div class="price">
+        ${{ pizza.price }}
+        <span class="discount">20% Off</span>
+      </div>
+      <ion-button 
+        size="small" 
+        fill="clear" 
+        class="add-btn" 
+        (click)="onAddClick($event)"
+        [attr.aria-label]="'Add ' + pizza.name + ' to cart'">
+        <ion-icon name="add-circle" slot="icon-only"></ion-icon>
+      </ion-button>
+    </div>
+  </div>
+</div>
+

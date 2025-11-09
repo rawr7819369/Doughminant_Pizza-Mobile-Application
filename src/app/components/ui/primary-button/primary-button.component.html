@@ -1,0 +1,28 @@
+<ion-button
+  [expand]="expand"
+  [disabled]="disabled || loading"
+  [class]="'primary-btn size-' + size"
+  (click)="onClick()">
+  
+  <ion-spinner 
+    *ngIf="loading" 
+    name="lines-small" 
+    class="button-spinner">
+  </ion-spinner>
+  
+  <ion-icon 
+    *ngIf="icon && iconPosition === 'start' && !loading" 
+    [name]="icon" 
+    slot="start">
+  </ion-icon>
+  
+  <span *ngIf="!loading">{{ label }}</span>
+  <span *ngIf="loading" class="loading-text">Loading...</span>
+  
+  <ion-icon 
+    *ngIf="icon && iconPosition === 'end' && !loading" 
+    [name]="icon" 
+    slot="end">
+  </ion-icon>
+</ion-button>
+

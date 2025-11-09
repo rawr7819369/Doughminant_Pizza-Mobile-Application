@@ -9,6 +9,11 @@
  * https://ionicframework.com/docs/layout/global-stylesheets
  */
 
+/* Design System Imports */
+@use './app/styles/design-tokens' as *;
+@use './app/styles/spacing' as *;
+@use './app/styles/typography' as *;
+
 /* Core CSS required for Ionic components to work properly */
 @import "@ionic/angular/css/core.css";
 
@@ -33,5 +38,123 @@
  */
 
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
-/* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import '@ionic/angular/css/palettes/dark.system.css';
+@import "@ionic/angular/css/palettes/dark.class.css";
+/* @import '@ionic/angular/css/palettes/dark.system.css'; */
+
+/* Typography */
+html, body, ion-app, ion-content {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial, sans-serif;
+  color: var(--ion-text-color);
+  background: var(--ion-background-color);
+}
+
+/* Rounded corners and shadows */
+ion-card, .card-rounded {
+  border-radius: var(--radius-md);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+}
+
+ion-button, .btn-rounded {
+  --border-radius: var(--radius-md);
+}
+
+/* Utility spacing */
+.page-padding {
+  padding: 16px;
+}
+
+/* Dark Mode Styles */
+body.dark,
+html.dark {
+  --ion-background-color: #121212;
+  --ion-text-color: #ffffff;
+  --ion-toolbar-background: #1f1f1f;
+  --ion-item-background: #1f1f1f;
+  --ion-card-background: #2a2a2a;
+  --ion-color-primary: #ff6a00;
+  --ion-color-secondary: #ffb347;
+  --ion-color-tertiary: #ff8c00;
+  --ion-color-success: #4caf50;
+  --ion-color-warning: #ff9800;
+  --ion-color-danger: #f44336;
+  --ion-color-light: #2a2a2a;
+  --ion-color-medium: #666666;
+  --ion-color-dark: #ffffff;
+}
+
+/* Dark mode specific overrides */
+body.dark ion-content,
+html.dark ion-content {
+  --background: #121212;
+}
+
+body.dark ion-toolbar,
+html.dark ion-toolbar {
+  --background: #1f1f1f;
+  --color: #ffffff;
+}
+
+body.dark ion-item,
+html.dark ion-item {
+  --background: #1f1f1f;
+  --color: #ffffff;
+  --border-color: #333333;
+}
+
+body.dark ion-card,
+html.dark ion-card {
+  --background: #2a2a2a;
+  --color: #ffffff;
+}
+
+body.dark ion-button,
+html.dark ion-button {
+  --color: #ffffff;
+}
+
+/* Dark mode for pizza app specific elements */
+body.dark .pizza-item,
+html.dark .pizza-item {
+  background: #2a2a2a;
+  color: #ffffff;
+}
+
+body.dark .cart-item,
+html.dark .cart-item {
+  background: #2a2a2a;
+  color: #ffffff;
+}
+
+body.dark .customization-panel,
+html.dark .customization-panel {
+  background: #2a2a2a;
+  border-color: #333333;
+}
+
+/* Accessibility - Focus Indicators */
+*:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+button:focus-visible,
+ion-button:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+}
+
+/* Screen Reader Only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

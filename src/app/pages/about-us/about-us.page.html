@@ -1,0 +1,164 @@
+<ion-header class="custom-header">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>About Us</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="about-content">
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <div class="hero-content">
+      <h1 class="hero-title">🍕 Doughminant Pizza</h1>
+      <p class="hero-subtitle">Crafting Perfect Pizzas, One Order at a Time</p>
+    </div>
+  </div>
+
+  <!-- Company Story Section -->
+  <ion-card class="story-card">
+    <ion-card-content>
+      <h2 class="section-title">
+        <ion-icon name="book-outline"></ion-icon>
+        Our Story
+      </h2>
+      <div class="story-content">
+        <p class="story-text">
+          Founded in 2019, Doughminant Pizza began as a small family-owned pizzeria with a big dream: 
+          to bring the finest, freshest pizzas directly to your doorstep. What started as a local 
+          neighborhood favorite has grown into a trusted name in pizza delivery.
+        </p>
+        <p class="story-text">
+          Our journey began when our founder, inspired by traditional Italian recipes passed down 
+          through generations, decided to combine authentic flavors with modern convenience. We 
+          believe that great pizza should be accessible to everyone, anytime, anywhere.
+        </p>
+        <p class="story-text">
+          Today, we're proud to serve thousands of customers daily, delivering not just pizza, 
+          but moments of joy and satisfaction. Every pizza is crafted with care, using only the 
+          freshest ingredients and time-tested recipes.
+        </p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Mission & Values -->
+  <ion-card class="mission-card">
+    <ion-card-content>
+      <h2 class="section-title">
+        <ion-icon name="flag-outline"></ion-icon>
+        Our Mission
+      </h2>
+      <p class="mission-text">
+        To deliver exceptional pizza experiences through innovative technology, 
+        quality ingredients, and outstanding customer service. We're committed to 
+        making every order perfect, every time.
+      </p>
+      
+      <h3 class="values-title">Our Values</h3>
+      <div class="values-list">
+        <div class="value-item">
+          <ion-icon name="heart-outline" class="value-icon"></ion-icon>
+          <div>
+            <strong>Quality First</strong>
+            <p>We never compromise on ingredients or preparation</p>
+          </div>
+        </div>
+        <div class="value-item">
+          <ion-icon name="rocket-outline" class="value-icon"></ion-icon>
+          <div>
+            <strong>Innovation</strong>
+            <p>Constantly improving our app and service</p>
+          </div>
+        </div>
+        <div class="value-item">
+          <ion-icon name="people-outline" class="value-icon"></ion-icon>
+          <div>
+            <strong>Customer Focus</strong>
+            <p>Your satisfaction is our top priority</p>
+          </div>
+        </div>
+        <div class="value-item">
+          <ion-icon name="leaf-outline" class="value-icon"></ion-icon>
+          <div>
+            <strong>Sustainability</strong>
+            <p>Committed to eco-friendly practices</p>
+          </div>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Stats Section -->
+  <div class="stats-section">
+    <div class="stats-grid">
+      <div *ngFor="let stat of companyStats" class="stat-card">
+        <ion-icon [name]="stat.icon" class="stat-icon"></ion-icon>
+        <div class="stat-value">{{ stat.value }}</div>
+        <div class="stat-label">{{ stat.label }}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Development Team Section -->
+  <ion-card class="team-card">
+    <ion-card-content>
+      <h2 class="section-title">
+        <ion-icon name="people-circle-outline"></ion-icon>
+        Our Development Team
+      </h2>
+      <p class="team-intro">
+        Meet the talented developers behind the Doughminant Pizza app. 
+        This dedicated team works tirelessly to ensure you have the best 
+        ordering experience possible.
+      </p>
+      
+      <div class="developers-grid">
+        <div *ngFor="let developer of developers" class="developer-card">
+          <div class="developer-avatar">
+            <img 
+              *ngIf="developer.image && !hasImageError(developer.name)" 
+              [src]="developer.image" 
+              [alt]="developer.name"
+              class="developer-image"
+              (error)="onImageError(developer.name)">
+            <div 
+              *ngIf="!developer.image || hasImageError(developer.name)"
+              class="developer-icon-fallback">
+              <ion-icon [name]="developer.icon" class="developer-icon"></ion-icon>
+            </div>
+          </div>
+          <h3 class="developer-name">{{ developer.name }}</h3>
+          <p class="developer-role">{{ developer.role }}</p>
+          <p class="developer-bio">{{ developer.bio }}</p>
+          <div class="developer-skills">
+            <span *ngFor="let skill of developer.skills" class="skill-badge">{{ skill }}</span>
+          </div>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Contact Section -->
+  <ion-card class="contact-card">
+    <ion-card-content>
+      <h2 class="section-title">
+        <ion-icon name="mail-outline"></ion-icon>
+        Get in Touch
+      </h2>
+      <p class="contact-text">
+        Have questions or feedback? We'd love to hear from you!
+      </p>
+      <ion-button 
+        expand="block" 
+        color="warning" 
+        routerLink="/feedback"
+        class="contact-button">
+        <ion-icon name="chatbubbles-outline" slot="start"></ion-icon>
+        Send Feedback
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+

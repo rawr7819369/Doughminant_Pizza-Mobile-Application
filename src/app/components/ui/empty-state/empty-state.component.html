@@ -1,0 +1,16 @@
+<div class="empty-state">
+  <ion-icon [name]="icon" class="empty-icon"></ion-icon>
+  <h3 class="empty-title">{{ title }}</h3>
+  <ion-text class="empty-message">{{ message }}</ion-text>
+  
+  <ion-button 
+    *ngIf="actionLabel"
+    [routerLink]="actionRoute"
+    (click)="actionClick && actionClick()"
+    fill="outline" 
+    color="warning"
+    class="empty-action">
+    {{ actionLabel }}
+  </ion-button>
+</div>
+

@@ -1,0 +1,37 @@
+@use '../../../styles/design-tokens';
+@use '../../../styles/spacing' as spacing-utils;
+
+.error-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: spacing-utils.spacing('xl');
+  text-align: center;
+  min-height: 300px;
+}
+
+.error-icon {
+  font-size: 64px;
+  color: var(--brand-danger);
+  margin-bottom: spacing-utils.spacing('md');
+}
+
+.error-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin: 0 0 spacing-utils.spacing('sm') 0;
+}
+
+.error-message {
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+  margin: 0 0 spacing-utils.spacing('lg') 0;
+  max-width: 400px;
+}
+
+ion-button {
+  margin-top: spacing-utils.spacing('md');
+}
+

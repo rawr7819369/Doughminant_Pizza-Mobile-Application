@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Order History</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="order-history-content">
+  <!-- Empty State -->
+  <app-empty-state
+    *ngIf="(orderHistory.orders$ | async)?.length === 0"
+    icon="receipt-outline"
+    title="No Orders Yet"
+    message="Your order history will appear here"
+    actionLabel="Browse Pizzas"
+    actionRoute="/home">
+  </app-empty-state>
+
+  <!-- Loading State -->
+  <app-skeleton-loader 
+    *ngIf="isLoading" 
+    type="list" 
+    [count]="3">
+  </app-skeleton-loader>
+
+  <!-- Order List -->
+  <app-order-card
+    *ngFor="let order of orderHistory.orders$ | async"
+    [order]="order">
+  </app-order-card>
+</ion-content>
+

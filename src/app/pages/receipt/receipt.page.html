@@ -1,0 +1,94 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Order Confirmation</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="receipt-content">
+  <div *ngIf="order">
+    <!-- Order Confirmation Header -->
+    <ion-card class="confirmation-header">
+      <ion-card-content>
+        <div class="success-icon">
+          <ion-icon name="checkmark-circle" size="large"></ion-icon>
+        </div>
+        <h2>Order Confirmed! 🎉</h2>
+        <p>Thank you for your order</p>
+        <div class="order-number">
+          <strong>Order #{{ order.id.substring(0, 8) }}</strong>
+        </div>
+        <ion-badge color="success">{{ order.status }}</ion-badge>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Order Items -->
+    <ion-card class="items-card">
+      <ion-card-content>
+        <h3>Order Items</h3>
+        <div *ngFor="let item of order.items" class="receipt-item">
+          <div class="item-info">
+            <h4>{{ item.pizza.name }} <span class="size">({{ item.size }})</span></h4>
+            <p>{{ item.quantity }}x ${{ item.pizza.price.toFixed(2) }}</p>
+            <small *ngIf="item.customization">Customized</small>
+          </div>
+          <div class="item-total">
+            ${{ (item.pizza.price * item.quantity).toFixed(2) }}
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Order Summary -->
+    <ion-card class="summary-card">
+      <ion-card-content>
+        <h3>Order Summary</h3>
+        <div class="summary-row">
+          <span>Subtotal:</span>
+          <span>${{ order.subtotal.toFixed(2) }}</span>
+        </div>
+        <div class="summary-row">
+          <span>Delivery Fee:</span>
+          <span>${{ order.deliveryFee.toFixed(2) }}</span>
+        </div>
+        <div class="summary-row total">
+          <strong>Total:</strong>
+          <strong>${{ order.total.toFixed(2) }}</strong>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Delivery Info -->
+    <ion-card class="delivery-card" *ngIf="order.address">
+      <ion-card-content>
+        <h3>Delivery Information</h3>
+        <p><strong>Address:</strong> {{ order.address }}</p>
+        <p><strong>Phone:</strong> {{ order.phone }}</p>
+        <p><strong>Order Date:</strong> {{ formatDate(order.date) }}</p>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+      <ion-button expand="block" fill="outline" (click)="print()">
+        <ion-icon name="print-outline" slot="start"></ion-icon>
+        Print Receipt
+      </ion-button>
+      <ion-button expand="block" color="warning" routerLink="/order-history">
+        <ion-icon name="receipt-outline" slot="start"></ion-icon>
+        View Order History
+      </ion-button>
+    </div>
+  </div>
+
+  <div *ngIf="!order" class="no-order">
+    <ion-icon name="receipt-outline" size="large"></ion-icon>
+    <h3>No Recent Orders</h3>
+    <p>Place an order to see your receipt</p>
+    <ion-button fill="outline" color="warning" routerLink="/home">
+      Start Ordering
+    </ion-button>
+  </div>
+</ion-content>

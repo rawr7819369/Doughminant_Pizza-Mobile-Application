@@ -1,0 +1,10 @@
+<div class="skeleton-container" [class]="'skeleton-' + type">
+  <div 
+    *ngFor="let item of [].constructor(count)" 
+    class="skeleton-item"
+    [style.width]="width"
+    [style.height]="height">
+    <div class="skeleton-shimmer"></div>
+  </div>
+</div>
+

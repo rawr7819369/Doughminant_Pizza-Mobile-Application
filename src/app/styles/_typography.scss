@@ -1,0 +1,125 @@
+/**
+ * Typography System
+ * Consistent font sizes, weights, and line heights
+ */
+
+@use "sass:map";
+
+$font-sizes: (
+  'xs': 12px,
+  'sm': 14px,
+  'base': 16px,
+  'lg': 18px,
+  'xl': 20px,
+  '2xl': 24px,
+  '3xl': 28px,
+  '4xl': 32px,
+);
+
+$font-weights: (
+  'normal': 400,
+  'medium': 500,
+  'semibold': 600,
+  'bold': 700,
+  'extrabold': 800,
+);
+
+$line-heights: (
+  'tight': 1.2,
+  'normal': 1.5,
+  'relaxed': 1.6,
+  'loose': 1.8,
+);
+
+/**
+ * Get line height
+ */
+@function line-height($height) {
+  @if map.has-key($line-heights, $height) {
+    @return map.get($line-heights, $height);
+  }
+  @return map.get($line-heights, 'normal');
+}
+
+/**
+ * Get font size
+ */
+@function font-size($size) {
+  @if map.has-key($font-sizes, $size) {
+    @return map.get($font-sizes, $size);
+  }
+  @warn "Font size '#{$size}' not found.";
+  @return map.get($font-sizes, 'base');
+}
+
+/**
+ * Get font weight
+ */
+@function font-weight($weight) {
+  @if map.has-key($font-weights, $weight) {
+    @return map.get($font-weights, $weight);
+  }
+  @return map.get($font-weights, 'normal');
+}
+
+/**
+ * Typography utility classes
+ */
+@each $name, $size in $font-sizes {
+  .text-#{$name} {
+    font-size: $size !important;
+  }
+}
+
+@each $name, $weight in $font-weights {
+  .font-#{$name} {
+    font-weight: $weight !important;
+  }
+}
+
+@each $name, $height in $line-heights {
+  .leading-#{$name} {
+    line-height: $height !important;
+  }
+}
+
+/**
+ * Heading styles
+ */
+.heading-1 {
+  font-size: font-size('3xl');
+  font-weight: font-weight('extrabold');
+  line-height: line-height('tight');
+  color: var(--ion-text-color);
+}
+
+.heading-2 {
+  font-size: font-size('2xl');
+  font-weight: font-weight('bold');
+  line-height: line-height('tight');
+  color: var(--ion-text-color);
+}
+
+.heading-3 {
+  font-size: font-size('xl');
+  font-weight: font-weight('bold');
+  line-height: line-height('normal');
+  color: var(--ion-text-color);
+}
+
+.body-text {
+  font-size: font-size('base');
+  font-weight: font-weight('normal');
+  line-height: line-height('relaxed');
+  color: var(--ion-text-color);
+}
+
+.text-muted {
+  color: #555; // WCAG AA compliant
+  font-size: font-size('sm');
+}
+
+.text-primary {
+  color: #d84315; // Darker orange for better contrast
+}
+

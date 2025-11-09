@@ -1,0 +1,267 @@
+/* Pizza Details page styles */
+:host { 
+  display: block; 
+}
+
+.custom-header {
+  --background: linear-gradient(180deg, #ff6a00, #ffb347);
+  color: #fff;
+  font-weight: bold;
+}
+
+.cart-button {
+  position: relative;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  font-size: 0.7em;
+  min-width: 18px;
+  height: 18px;
+}
+
+.pizza-details-content {
+  background: #fff8f2;
+  padding: 16px;
+}
+
+/* Pizza Display Card */
+.pizza-display-card {
+  background: #fff8f0;
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(255, 106, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+}
+
+.pizza-image-container {
+  flex-shrink: 0;
+}
+
+.pizza-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #ff6a00;
+}
+
+.pizza-info {
+  flex-grow: 1;
+}
+
+.pizza-name {
+  color: #b23b00;
+  font-size: 1.4em;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+}
+
+.pizza-price {
+  color: #ff6a00;
+  font-size: 1.2em;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+}
+
+.pizza-ingredients {
+  color: #666;
+  font-size: 0.9em;
+  margin: 0;
+}
+
+.add-to-cart-icon {
+  --color: #ff6a00;
+  font-size: 1.5em;
+}
+
+/* Section Styling */
+.section-title {
+  color: #b23b00;
+  font-size: 1.1em;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+}
+
+/* Size Section */
+.size-section {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(255, 106, 0, 0.1);
+}
+
+.size-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.size-btn {
+  --border-radius: 20px;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  font-weight: 600;
+  min-width: 80px;
+}
+
+/* Crust Section */
+.crust-section {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(255, 106, 0, 0.1);
+}
+
+.crust-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.crust-btn {
+  --border-radius: 20px;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  font-weight: 600;
+  min-width: 80px;
+}
+
+/* Toppings Section */
+.toppings-section {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(255, 106, 0, 0.1);
+}
+
+.toppings-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.toppings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.topping-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: #fff8f0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.topping-item:hover {
+  background: #ffe0c2;
+}
+
+.topping-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.topping-icon {
+  color: #ff6a00;
+  font-size: 1.2em;
+}
+
+.topping-name {
+  color: #b23b00;
+  font-weight: 600;
+  font-size: 1em;
+}
+
+/* Special Instructions */
+.special-instructions-section {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(255, 106, 0, 0.1);
+}
+
+.instructions-textarea {
+  --background: #fff8f0;
+  --border-radius: 12px;
+  --padding-start: 12px;
+  --padding-end: 12px;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+  border: 1px solid #ffe0c2;
+}
+
+/* Add to Cart Button */
+.add-to-cart-section {
+  padding: 0 4px 20px 4px;
+}
+
+.add-to-cart-btn {
+  --background: linear-gradient(90deg, #ff6a00, #ffb347);
+  --color: #fff;
+  --border-radius: 25px;
+  font-weight: 700;
+  font-size: 1.1em;
+  height: 50px;
+  box-shadow: 0 4px 15px rgba(255, 106, 0, 0.3);
+}
+
+/* Button Colors */
+ion-button[color="warning"] {
+  --background: linear-gradient(90deg, #ff6a00, #ffb347);
+  --color: #fff;
+  --border-radius: 20px;
+  font-weight: 600;
+}
+
+ion-button[color="medium"] {
+  --background: #f5f5f5;
+  --color: #666;
+  --border-radius: 20px;
+  font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .pizza-display-card {
+    padding: 16px;
+    gap: 12px;
+  }
+  
+  .pizza-image {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .pizza-name {
+    font-size: 1.2em;
+  }
+  
+  .size-buttons,
+  .crust-buttons {
+    gap: 6px;
+  }
+  
+  .size-btn,
+  .crust-btn {
+    min-width: 70px;
+    font-size: 0.9em;
+  }
+}

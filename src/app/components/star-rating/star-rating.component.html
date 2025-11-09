@@ -1,0 +1,5 @@
+<div class="stars" [style.fontSize.px]="size">
+  <span *ngFor="let s of stars" (click)="set(s)">
+    {{ s <= value ? '★' : '☆' }}
+  </span>
+</div>

@@ -1,0 +1,96 @@
+@use '../../../styles/design-tokens';
+@use '../../../styles/spacing' as spacing-utils;
+
+.order-card {
+  background: var(--bg-primary);
+  border-radius: var(--radius-lg);
+  padding: spacing-utils.spacing('md');
+  margin-bottom: spacing-utils.spacing('md');
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.order-card:active {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: spacing-utils.spacing('sm');
+  padding-bottom: spacing-utils.spacing('sm');
+  border-bottom: 2px solid var(--border-light);
+}
+
+.order-info h3 {
+  margin: 0;
+  color: var(--brand-primary-dark);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+}
+
+.order-date {
+  margin: spacing-utils.spacing('xs') 0 0 0;
+  color: var(--text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.order-items {
+  margin-bottom: spacing-utils.spacing('sm');
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  padding: spacing-utils.spacing('xs') 0;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.item-total {
+  font-weight: var(--font-weight-semibold);
+  color: var(--brand-primary);
+}
+
+.order-footer {
+  display: flex;
+  flex-direction: column;
+  gap: spacing-utils.spacing('sm');
+}
+
+.order-totals {
+  padding-top: spacing-utils.spacing('sm');
+  border-top: 1px solid var(--border-light);
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  margin: spacing-utils.spacing('xs') 0;
+  font-size: var(--font-size-sm);
+}
+
+.total-row.total {
+  font-size: var(--font-size-lg);
+  margin-top: spacing-utils.spacing('xs');
+  padding-top: spacing-utils.spacing('xs');
+  border-top: 2px solid var(--brand-primary);
+}
+
+.total-row.total strong {
+  color: var(--brand-primary);
+}
+
+@media (max-width: 480px) {
+  .order-card {
+    padding: spacing-utils.spacing('sm');
+  }
+  
+  .order-header {
+    flex-direction: column;
+    gap: spacing-utils.spacing('xs');
+  }
+}
+

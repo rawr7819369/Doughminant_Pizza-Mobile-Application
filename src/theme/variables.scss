@@ -1,2 +1,33 @@
 // For information on how to create your own theme, please see:
 // http://ionicframework.com/docs/theming/
+
+:root {
+  /* Brand Colors */
+  --color-tomato-red: #D62828; /* Primary */
+  --color-cheese-yellow: #F6BD60; /* Accent */
+  --color-basil-green: #588157; /* Success */
+  --color-flour-white: #FAF9F6; /* Background */
+  --color-oven-charcoal: #2D2D2A; /* Text/Icons/Borders */
+
+  /* Ionic Color Mapping */
+  --ion-color-primary: var(--color-tomato-red);
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-secondary: var(--color-cheese-yellow);
+  --ion-color-secondary-contrast: #2D2D2A;
+  --ion-color-success: var(--color-basil-green);
+  --ion-color-success-contrast: #ffffff;
+  --ion-background-color: var(--color-flour-white);
+  --ion-text-color: var(--color-oven-charcoal);
+
+  /* Radius & Elevation */
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --card-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ion-background-color: #121212;
+    --ion-text-color: #EAEAEA;
+  }
+}

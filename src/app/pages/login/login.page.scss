@@ -1,0 +1,231 @@
+/* ===== Ensure full-screen layout ===== */
+:host,
+ion-content,
+.login-content {
+  height: 100%;
+  width: 100%;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+ion-content {
+  --background: linear-gradient(180deg, #ff6a00, #ffb347);
+}
+
+/* ===== Background container ===== */
+.login-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* ===== Wrapper (white card) ===== */
+.login-wrapper {
+  background: #fff8f0;
+  border-radius: 25px;
+  padding: 40px 30px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+
+  /* Center vertically like home.page.scss */
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: auto;
+}
+
+/* ===== Logo section ===== */
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  width: 110px;
+  height: auto;
+}
+
+.brand-name {
+  color: #d35400;
+  font-weight: bold;
+  font-size: 22px;
+  margin-top: 8px;
+}
+
+/* ===== Welcome text ===== */
+.welcome-text {
+  color: #b23b00;
+  font-weight: 700;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+/* ===== Inputs ===== */
+.input-item {
+  margin: 12px 0;
+  border: 1.5px solid #ff6a00;
+  border-radius: 12px;
+  --background: #fff;
+}
+
+ion-input {
+  padding-left: 10px;
+  --background: #fff !important;
+  --color: #000;
+}
+
+/* Remove gray autofill background (Chrome/Safari) */
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active {
+  transition: background-color 9999s ease-in-out 0s !important;
+  -webkit-text-fill-color: #000 !important;
+  caret-color: #000 !important;
+}
+
+/* ===== Icons ===== */
+ion-icon {
+  color: #ff6a00;
+}
+
+/* ===== Login button ===== */
+.login-btn {
+  margin-top: 20px;
+  border-radius: 12px;
+  background-color: #d32f2f;
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 4px 8px rgba(211, 47, 47, 0.3);
+}
+
+/* ===== Forgot password link ===== */
+.forgot-text {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.forgot-text a {
+  color: #b23b00;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* ===== Social login section ===== */
+.social-login {
+  margin-top: 24px;
+}
+
+.social-login p {
+  font-size: 14px;
+  color:white;
+}
+
+.social-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.social-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.social-button {
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.social-button:active {
+  transform: scale(0.95);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.social-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.social-button ion-icon {
+  font-size: 28px;
+  color: #444;
+}
+
+.social-button:hover:not(:disabled) {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Specific colors for each provider */
+.social-button:nth-child(1) ion-icon {
+  color: #1877f2; /* Facebook blue */
+}
+
+.social-button:nth-child(2) ion-icon {
+  color: #4285f4; /* Google blue */
+}
+
+.social-button:nth-child(3) ion-icon {
+  color: #000000; /* Apple black */
+}
+
+/* ===== Signup section ===== */
+.signup-text {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.signup-text a {
+  color: #ff6a00;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* ===== Responsive adjustments ===== */
+@media (max-width: 480px) {
+  .login-wrapper {
+    padding: 28px 20px;
+    border-radius: 20px;
+  }
+
+  .brand-name {
+    font-size: 20px;
+  }
+
+  .welcome-text {
+    font-size: 18px;
+  }
+}

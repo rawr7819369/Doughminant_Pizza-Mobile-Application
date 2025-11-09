@@ -1,0 +1,117 @@
+/* ================================
+   Doeminant Pizza - Settings Page
+   ================================ */
+   :host {
+    display: block;
+  }
+  
+  /* Page background */
+  ion-content {
+    --background: #fff8f2;
+    padding-bottom: 32px;
+  }
+  
+  /* Header styling (matches brand) */
+  ion-toolbar {
+    --background: linear-gradient(180deg, #ff6a00, #ffb347);
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  /* Each section group */
+  ion-list.settings-group {
+    margin: 16px;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(255, 106, 0, 0.12);
+  }
+  
+  /* Section headers */
+  ion-list-header {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #ff6a00;
+    margin: 8px 0 4px 8px;
+  }
+  
+  /* Each item line */
+  ion-item {
+    --color: #b23b00;
+    --background: transparent;
+  }
+  
+  /* Label titles */
+  ion-item h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ff6a00;
+    margin: 0;
+  }
+  
+  /* Sub-labels / descriptions */
+  ion-item p {
+    font-size: 0.85rem;
+    color: #8c8c8c;
+    margin: 2px 0 0 0;
+  }
+  
+  /* Icons on left side */
+  ion-icon {
+    color: #ff6a00;
+    font-size: 22px;
+  }
+  
+  /* Toggle positioning and colors */
+  ion-toggle {
+    --handle-background: #ffb347;
+    --handle-background-checked: #ff6a00;
+    --background: #e0e0e0;
+    --background-checked: #ff6a00;
+    margin-left: auto;
+  }
+
+  /* Dark mode toggle item styling */
+  ion-item:has(ion-toggle) {
+    --padding-end: 16px;
+  }
+
+  /* Dark mode styles */
+  :host(.dark) {
+    ion-content {
+      --background: #121212;
+    }
+    
+    ion-list.settings-group {
+      background: #1f1f1f;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+    
+    ion-item {
+      --color: #ffffff;
+      --background: transparent;
+    }
+    
+    ion-item h2 {
+      color: #ffffff;
+    }
+    
+    ion-item p {
+      color: #b0b0b0;
+    }
+    
+    ion-icon {
+      color: #ff6a00;
+    }
+    
+    ion-list-header {
+      color: #ff6a00;
+    }
+  }
+  
+  /* Mobile responsiveness */
+  @media (max-width: 480px) {
+    ion-list.settings-group {
+      margin: 12px;
+    }
+  }
+  

@@ -1,0 +1,116 @@
+<ion-header class="custom-header">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/cart"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Payment Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="payment-content">
+  <!-- Delivery Address Card -->
+  <ion-card class="address-card">
+    <ion-card-content>
+      <h3 class="section-title">
+        <ion-icon name="location-outline"></ion-icon>
+        Delivery Address
+      </h3>
+      <div class="input-group">
+        <ion-label class="input-label">Street Address</ion-label>
+        <ion-input 
+          [(ngModel)]="street" 
+          placeholder="123 Main Street"
+          class="custom-input">
+        </ion-input>
+      </div>
+      <div class="input-group">
+        <ion-label class="input-label">City</ion-label>
+        <ion-input 
+          [(ngModel)]="city" 
+          placeholder="New York"
+          class="custom-input">
+        </ion-input>
+      </div>
+      <div class="input-group">
+        <ion-label class="input-label">ZIP Code</ion-label>
+        <ion-input 
+          [(ngModel)]="zipCode" 
+          inputmode="numeric" 
+          placeholder="10001"
+          class="custom-input">
+        </ion-input>
+      </div>
+      <div class="input-group">
+        <ion-label class="input-label">Phone Number</ion-label>
+        <ion-input 
+          [(ngModel)]="phone" 
+          inputmode="tel" 
+          placeholder="+1 (555) 123-4567"
+          class="custom-input">
+        </ion-input>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Payment Method Card -->
+  <ion-card class="payment-card">
+    <ion-card-content>
+      <h3 class="section-title">
+        <ion-icon name="card-outline"></ion-icon>
+        Payment Details
+      </h3>
+      <div class="input-group">
+        <ion-label class="input-label">Name on Card</ion-label>
+        <ion-input 
+          [(ngModel)]="name" 
+          placeholder="John Doe"
+          class="custom-input">
+        </ion-input>
+      </div>
+      <div class="input-group">
+        <ion-label class="input-label">Card Number</ion-label>
+        <ion-input 
+          [(ngModel)]="card" 
+          inputmode="numeric" 
+          placeholder="4242 4242 4242 4242"
+          class="custom-input">
+        </ion-input>
+      </div>
+      <div class="row-inputs">
+        <div class="input-group half-width">
+          <ion-label class="input-label">Expiry</ion-label>
+          <ion-input 
+            [(ngModel)]="expiry" 
+            placeholder="MM/YY"
+            class="custom-input">
+          </ion-input>
+        </div>
+        <div class="input-group half-width">
+          <ion-label class="input-label">CVV</ion-label>
+          <ion-input 
+            [(ngModel)]="cvv" 
+            type="password" 
+            inputmode="numeric"
+            placeholder="123"
+            class="custom-input">
+          </ion-input>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Pay Button -->
+  <div class="pay-button-section">
+    <ion-button 
+      expand="block" 
+      color="warning" 
+      (click)="onPay()" 
+      class="pay-button"
+      [disabled]="isLoading"
+      aria-label="Complete payment">
+      <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+      <span *ngIf="!isLoading">Pay Now</span>
+      <span *ngIf="isLoading">Processing...</span>
+    </ion-button>
+  </div>
+</ion-content>

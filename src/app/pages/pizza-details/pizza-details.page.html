@@ -1,0 +1,104 @@
+<ion-header class="custom-header">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Menu & Customization</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" routerLink="/cart" class="cart-button">
+        <ion-icon name="cart-outline"></ion-icon>
+        <ion-badge *ngIf="orders.getTotalItems() > 0" color="warning" class="cart-badge">
+          {{ orders.getTotalItems() }}
+        </ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="pizza-details-content">
+  <!-- Pizza Display Card -->
+  <div class="pizza-display-card">
+    <div class="pizza-image-container">
+      <img [src]="pizza?.img" alt="pizza image" class="pizza-image">
+    </div>
+    <div class="pizza-info">
+      <h2 class="pizza-name">{{ pizza?.name }}</h2>
+      <p class="pizza-price">${{ getTotalPrice().toFixed(2) }}</p>
+      <p class="pizza-ingredients">{{ pizza?.ingredients }}</p>
+    </div>
+    <ion-button fill="clear" class="add-to-cart-icon" (click)="addToCart()">
+      <ion-icon name="cart-outline"></ion-icon>
+    </ion-button>
+  </div>
+
+  <!-- Size Selection -->
+  <div class="size-section">
+    <h3 class="section-title">Size</h3>
+    <div class="size-buttons">
+      <ion-button 
+        *ngFor="let s of pizza?.size" 
+        [fill]="size === s ? 'solid' : 'outline'"
+        [color]="size === s ? 'warning' : 'medium'"
+        (click)="setSize(s)"
+        class="size-btn">
+        {{ s }}
+      </ion-button>
+    </div>
+  </div>
+
+  <!-- Crust Type Selection -->
+  <div class="crust-section">
+    <h3 class="section-title">Crust Type</h3>
+    <div class="crust-buttons">
+      <ion-button 
+        *ngFor="let crust of crusts" 
+        [fill]="selectedCrust?.id === crust.id ? 'solid' : 'outline'"
+        [color]="selectedCrust?.id === crust.id ? 'warning' : 'medium'"
+        (click)="selectedCrust = crust"
+        class="crust-btn">
+        {{ crust.name }}
+      </ion-button>
+    </div>
+  </div>
+
+  <!-- Toppings Section -->
+  <div class="toppings-section">
+    <div class="toppings-header">
+      <h3 class="section-title">Toppings</h3>
+      <ion-toggle [(ngModel)]="showCustomization" color="success"></ion-toggle>
+    </div>
+    
+    <div *ngIf="showCustomization" class="toppings-list">
+      <div *ngFor="let topping of toppings" class="topping-item" (click)="toggleTopping(topping)">
+        <div class="topping-info">
+          <ion-icon [name]="getToppingIcon(topping.name)" class="topping-icon"></ion-icon>
+          <span class="topping-name">{{ topping.name }}</span>
+        </div>
+        <ion-toggle 
+          [checked]="isToppingSelected(topping)"
+          (click)="$event.stopPropagation()"
+          color="success">
+        </ion-toggle>
+      </div>
+    </div>
+  </div>
+
+  <!-- Special Instructions -->
+  <div class="special-instructions-section">
+    <h3 class="section-title">Special Instructions</h3>
+    <ion-textarea
+      [(ngModel)]="specialInstructions"
+      placeholder="Any special requests for your pizza..."
+      rows="3"
+      class="instructions-textarea">
+    </ion-textarea>
+  </div>
+
+  <!-- Add to Cart Button -->
+  <div class="add-to-cart-section">
+    <ion-button expand="block" color="warning" (click)="addToCart()" class="add-to-cart-btn">
+      <ion-icon name="pizza-outline" slot="start"></ion-icon>
+      Add to Cart - ${{ getTotalPrice().toFixed(2) }}
+    </ion-button>
+  </div>
+</ion-content>

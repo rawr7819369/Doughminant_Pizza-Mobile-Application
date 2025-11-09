@@ -1,0 +1,225 @@
+@use '../../../styles/design-tokens';
+@use '../../../styles/spacing' as spacing-utils;
+
+.pizza-card {
+  position: relative;
+  background: var(--bg-primary);
+  border-radius: var(--radius-lg);
+  display: flex;
+  padding: spacing-utils.spacing('sm');
+  align-items: center;
+  margin-bottom: spacing-utils.spacing('md');
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  overflow: visible;
+  cursor: pointer;
+}
+
+.pizza-card:active {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.trust-badges {
+  position: absolute;
+  top: -8px;
+  left: spacing-utils.spacing('sm');
+  display: flex;
+  gap: spacing-utils.spacing('xs');
+  flex-wrap: wrap;
+  z-index: var(--z-base);
+}
+
+.badge {
+  font-size: 10px;
+  font-weight: var(--font-weight-bold);
+  padding: 4px spacing('xs');
+  border-radius: 12px;
+  white-space: nowrap;
+  box-shadow: var(--shadow-sm);
+}
+
+.best-seller-badge {
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+  color: #8b6914;
+}
+
+.chef-badge {
+  background: linear-gradient(135deg, var(--brand-primary), #ff8c42);
+  color: var(--text-inverse);
+}
+
+.new-badge {
+  background: linear-gradient(135deg, var(--brand-success), #66bb6a);
+  color: var(--text-inverse);
+}
+
+.pizza-image {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: spacing-utils.spacing('sm');
+  border: 2px solid var(--border-light);
+  transition: transform var(--transition-base);
+  flex-shrink: 0;
+}
+
+.pizza-card:active .pizza-image {
+  transform: scale(1.05);
+}
+
+.pizza-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.pizza-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: spacing-utils.spacing('xs');
+  gap: spacing-utils.spacing('xs');
+}
+
+.pizza-name {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin: 0;
+  flex: 1;
+  line-height: var(--line-height-tight);
+}
+
+.heart-icon {
+  font-size: 24px !important;
+  color: var(--brand-primary) !important;
+  cursor: pointer;
+  transition: transform var(--transition-bounce), color var(--transition-base);
+  flex-shrink: 0;
+  min-width: var(--touch-target-min);
+  min-height: var(--touch-target-min);
+  padding: spacing-utils.spacing('xs');
+  margin: calc(-1 * #{spacing-utils.spacing('xs')});
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heart-icon:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+  border-radius: 50%;
+}
+
+.heart-icon:active {
+  transform: scale(1.3);
+}
+
+.heart-icon.favorited {
+  color: #ff1744 !important;
+  animation: heart-pop 0.4s ease;
+}
+
+@keyframes heart-pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+
+.offer {
+  color: var(--text-muted);
+  font-size: var(--font-size-xs);
+  margin: spacing('xs') 0;
+}
+
+.details {
+  display: flex;
+  justify-content: flex-start;
+  gap: spacing-utils.spacing('sm');
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  align-items: center;
+  margin: spacing-utils.spacing('xs') 0;
+}
+
+.details ion-icon {
+  color: #ffb400;
+  font-size: var(--font-size-base);
+  margin-right: 3px;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: spacing-utils.spacing('xs');
+  gap: spacing-utils.spacing('xs');
+}
+
+.price {
+  font-weight: var(--font-weight-extrabold);
+  font-size: var(--font-size-lg);
+  color: var(--text-primary);
+}
+
+.discount {
+  background: linear-gradient(135deg, #ffe6cc, #ffd9b3);
+  color: var(--brand-primary);
+  border-radius: 12px;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  padding: 3px spacing-utils.spacing('xs');
+  margin-left: spacing-utils.spacing('xs');
+}
+
+.add-btn {
+  --color: var(--brand-primary);
+  --background: transparent;
+  width: var(--touch-target-ideal);
+  height: var(--touch-target-ideal);
+  flex-shrink: 0;
+  transition: transform var(--transition-base);
+  margin: 0;
+  padding: 0;
+  min-width: var(--touch-target-ideal);
+  min-height: var(--touch-target-ideal);
+  --padding-start: 0;
+  --padding-end: 0;
+}
+
+.add-btn::part(native) {
+  padding: 0;
+  margin: 0;
+}
+
+.add-btn:active {
+  transform: scale(1.15);
+}
+
+.add-btn:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+  border-radius: 50%;
+}
+
+.add-btn ion-icon {
+  font-size: 36px !important;
+  color: var(--brand-primary) !important;
+  width: 36px;
+  height: 36px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .pizza-card {
+    padding: spacing-utils.spacing('sm');
+    margin-bottom: spacing-utils.spacing('sm');
+  }
+
+  .pizza-image {
+    width: 80px;
+    height: 80px;
+  }
+}
+

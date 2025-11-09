@@ -1,0 +1,116 @@
+<ion-header class="custom-header">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Doeminant Pizza</ion-title>
+    <ion-buttons slot="end">
+      <ion-button 
+        fill="clear" 
+        routerLink="/cart" 
+        class="cart-button"
+        [attr.aria-label]="'View cart with ' + orders.getTotalItems() + ' items'">
+        <ion-icon name="cart-outline"></ion-icon>
+        <ion-badge *ngIf="orders.getTotalItems() > 0" color="warning" class="cart-badge">
+          {{ orders.getTotalItems() }}
+        </ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="home-content">
+
+  <!-- Search Bar Section -->
+  <div class="search-section">
+    <ion-searchbar
+      placeholder="Search your favorite pizza..."
+      (ionInput)="onSearch($event)">
+    </ion-searchbar>
+    
+    <!-- Category Filter Buttons -->
+    <div class="filter-buttons">
+      <ion-button 
+        [fill]="selectedFilter === 'all' ? 'solid' : 'outline'"
+        color="warning" 
+        class="filter-btn"
+        (click)="setFilter('all')"
+        [attr.aria-label]="'Filter: All pizzas'">
+        <ion-icon name="apps-outline" slot="start"></ion-icon>
+        All
+      </ion-button>
+      
+      <ion-button 
+        [fill]="selectedFilter === 'vegetarian' ? 'solid' : 'outline'"
+        color="success" 
+        class="filter-btn"
+        (click)="setFilter('vegetarian')"
+        [attr.aria-label]="'Filter: Vegetarian pizzas'">
+        <ion-icon name="leaf-outline" slot="start"></ion-icon>
+        Vegetarian
+      </ion-button>
+      
+      <ion-button 
+        [fill]="selectedFilter === 'meat' ? 'solid' : 'outline'"
+        color="danger" 
+        class="filter-btn"
+        (click)="setFilter('meat')"
+        [attr.aria-label]="'Filter: Meat pizzas'">
+        <ion-icon name="restaurant-outline" slot="start"></ion-icon>
+        Meat
+      </ion-button>
+    </div>
+  </div>
+
+  <!-- Special Offer -->
+  <div class="special-offer">
+    <div class="offer-overlay"></div>
+    <div class="offer-content">
+      <div class="offer-text">
+        <div class="offer-badge">
+          <ion-icon name="flame"></ion-icon>
+          <span>Special Offer</span>
+        </div>
+        <h2>🔥 Get 20% Off Today!</h2>
+        <p>Limited time offer<br />Discount applied at checkout</p>
+        <ion-button 
+          class="order-btn" 
+          (click)="scrollToPizzas()"
+          aria-label="Scroll to pizza menu">
+          <ion-icon name="cart" slot="start"></ion-icon>
+          Order Now
+        </ion-button>
+      </div>
+      <div class="offer-image-wrapper">
+        <img src="assets/product_images/margherita-pizza-recipe.jpg" alt="Special Pizza" />
+        <div class="offer-badge-image">🍕</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popular Pizza Section -->
+  <div class="section-header">
+    <h2 class="section-title-large">🔥 Popular Pizza</h2>
+    <a href="#" class="see-all-link">See All →</a>
+  </div>
+
+  <!-- Tabs for pizza categories -->
+
+
+  <!-- Pizza Cards -->
+  <div class="pizza-list">
+    <app-skeleton-loader 
+      *ngIf="isLoading" 
+      type="card" 
+      [count]="5">
+    </app-skeleton-loader>
+    <app-pizza-card
+      *ngFor="let p of filtered"
+      [pizza]="p"
+      [isFavorite]="isFavorite(p.id)"
+      (favoriteToggled)="toggleFavorite($event)"
+      (addToCart)="openDetails($event)">
+    </app-pizza-card>
+  </div>
+
+</ion-content>

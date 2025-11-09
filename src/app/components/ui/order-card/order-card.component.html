@@ -1,0 +1,45 @@
+<div class="order-card">
+  <div class="order-header">
+    <div class="order-info">
+      <h3>Order #{{ order.id.substring(0, 8) }}</h3>
+      <p class="order-date">{{ formatDate(order.date) }}</p>
+    </div>
+    <ion-badge [color]="getStatusColor(order.status)">
+      <ion-icon [name]="getStatusIcon(order.status)" slot="start"></ion-icon>
+      {{ order.status }}
+    </ion-badge>
+  </div>
+
+  <div class="order-items">
+    <div *ngFor="let item of order.items" class="order-item">
+      <span>{{ item.quantity }}x {{ item.pizza.name }}</span>
+      <span class="item-total">${{ (item.pizza.price * item.quantity).toFixed(2) }}</span>
+    </div>
+  </div>
+
+  <div class="order-footer">
+    <div class="order-totals">
+      <div class="total-row">
+        <span>Subtotal:</span>
+        <span>${{ order.subtotal.toFixed(2) }}</span>
+      </div>
+      <div class="total-row">
+        <span>Delivery:</span>
+        <span>${{ order.deliveryFee.toFixed(2) }}</span>
+      </div>
+      <div class="total-row total">
+        <strong>Total:</strong>
+        <strong>${{ order.total.toFixed(2) }}</strong>
+      </div>
+    </div>
+    <ion-button 
+      fill="outline" 
+      size="small" 
+      [routerLink]="['/order-tracking', order.id]"
+      [attr.aria-label]="'Track order ' + order.id">
+      <ion-icon name="location-outline" slot="start"></ion-icon>
+      Track Order
+    </ion-button>
+  </div>
+</div>
+

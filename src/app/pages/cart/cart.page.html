@@ -1,0 +1,144 @@
+<ion-header>
+  <ion-toolbar class="cart-header">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Cart & Checkout</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="cart-content">
+
+  <!-- EMPTY CART -->
+  <app-empty-state
+    *ngIf="(orders.items$ | async)?.length === 0"
+    icon="pizza-outline"
+    title="Your cart is empty"
+    message="Add some delicious pizzas to get started!"
+    actionLabel="Browse Pizzas"
+    actionRoute="/home">
+  </app-empty-state>
+
+  <!-- CART ITEMS -->
+  <div *ngFor="let item of orders.items$ | async; let i = index" class="cart-item">
+    <div class="item-content">
+      <img [src]="item.pizza.img || 'assets/pizza-placeholder.png'" alt="Pizza" class="item-img" />
+
+      <div class="item-info">
+        <h3>{{ item.pizza.name }} <span class="size-badge">({{ item.size }})</span></h3>
+        <p class="item-price">${{ item.pizza.price.toFixed(2) }}</p>
+
+        <div *ngIf="item.customization" class="customization">
+          <small *ngIf="getToppingsText(item)">
+            {{ getToppingsText(item) }}
+          </small>
+        </div>
+
+        <!-- Quantity Controls -->
+        <div class="quantity-controls">
+          <ion-button 
+            fill="clear" 
+            size="small" 
+            (click)="orders.decreaseQuantity(i); onQuantityChange()"
+            aria-label="Decrease quantity">
+            <ion-icon name="remove-circle-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+          <span class="quantity-text">Qty: {{ item.quantity }}</span>
+          <ion-button 
+            fill="clear" 
+            size="small" 
+            (click)="orders.increaseQuantity(i); onQuantityChange()"
+            aria-label="Increase quantity">
+            <ion-icon name="add-circle-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+
+      <div class="item-actions">
+        <p class="item-total-price">${{ getItemTotal(item).toFixed(2) }}</p>
+        <ion-button 
+          fill="clear" 
+          color="danger" 
+          size="small" 
+          (click)="orders.remove(i); onRemove()"
+          aria-label="Remove {{ item.pizza.name }} from cart">
+          <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ORDER SUMMARY -->
+  <div *ngIf="(orders.items$ | async) && (orders.items$ | async)!.length > 0" class="order-summary">
+    <h4>Order Summary</h4>
+    <div class="summary-row">
+      <span>Subtotal</span>
+      <span>${{ orders.total().toFixed(2) }}</span>
+    </div>
+    <div class="summary-row">
+      <span>Delivery Fee</span>
+      <span>$2.00</span>
+    </div>
+    <div class="summary-total">
+      <strong>Total:</strong>
+      <strong>${{ (orders.total() + 2).toFixed(2) }}</strong>
+    </div>
+  </div>
+
+  <!-- DELIVERY INFO -->
+  <div *ngIf="(orders.items$ | async) && (orders.items$ | async)!.length > 0" class="delivery-section">
+    <h4>Delivery & Payment</h4>
+    
+    <!-- Payment Method Selection -->
+    <div class="payment-method-card">
+      <h5>Select Payment Method</h5>
+      <ion-radio-group [(ngModel)]="selectedPaymentMethod" class="payment-options">
+        <div class="payment-option">
+          <ion-radio value="cash" color="warning"></ion-radio>
+          <ion-icon name="cash-outline" class="payment-icon"></ion-icon>
+          <span>Cash on Delivery</span>
+        </div>
+        <div class="payment-option">
+          <ion-radio value="card" color="warning"></ion-radio>
+          <ion-icon name="card-outline" class="payment-icon"></ion-icon>
+          <span>Credit/Debit Card</span>
+        </div>
+        <div class="payment-option">
+          <ion-radio value="digital" color="warning"></ion-radio>
+          <ion-icon name="phone-portrait-outline" class="payment-icon"></ion-icon>
+          <span>Digital Wallet</span>
+        </div>
+      </ion-radio-group>
+    </div>
+
+    <!-- Special Instructions -->
+    <div class="instructions-card">
+      <h5>Special Instructions</h5>
+      <ion-textarea
+        [(ngModel)]="specialInstructions"
+        placeholder="Any special delivery instructions?"
+        rows="2"
+        class="instructions-input">
+      </ion-textarea>
+    </div>
+
+    <!-- Leave at Door Option -->
+    <div class="toggle-card">
+      <ion-toggle color="warning" [(ngModel)]="leaveAtDoor"></ion-toggle>
+      <span class="toggle-label">Leave at door</span>
+    </div>
+  </div>
+
+  <!-- PLACE ORDER BUTTON -->
+  <div *ngIf="(orders.items$ | async) && (orders.items$ | async)!.length > 0" class="place-order-section">
+    <ion-button 
+      expand="block" 
+      color="warning" 
+      (click)="onPlaceOrder()"
+      aria-label="Place order for ${{ (orders.total() + 2).toFixed(2) }}">
+      <ion-icon name="pizza-outline" slot="start"></ion-icon>
+      Place Order - ${{ (orders.total() + 2).toFixed(2) }}
+    </ion-button>
+  </div>
+
+</ion-content>

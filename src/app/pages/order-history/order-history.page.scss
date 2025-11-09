@@ -1,0 +1,112 @@
+@use '../../styles/spacing' as spacing-utils;
+@use '../../styles/design-tokens' as *;
+
+.order-history-content {
+  --background: var(--bg-secondary);
+  padding: spacing-utils.spacing('md');
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #b23b00;
+}
+
+.empty-state ion-icon {
+  font-size: 5rem;
+  color: #ff6a00;
+  margin-bottom: 20px;
+}
+
+.empty-state h3 {
+  margin: 16px 0 8px 0;
+  color: #b23b00;
+}
+
+.order-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 10px rgba(255, 106, 0, 0.1);
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #ffe0c2;
+}
+
+.order-info h3 {
+  margin: 0;
+  color: #b23b00;
+  font-size: 1.1em;
+  font-weight: 700;
+}
+
+.order-date {
+  margin: 4px 0 0 0;
+  color: #888;
+  font-size: 0.85em;
+}
+
+.order-items {
+  margin-bottom: 12px;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  color: #555;
+  font-size: 0.95em;
+}
+
+.item-total {
+  font-weight: 600;
+  color: #ff6a00;
+}
+
+.order-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.order-totals {
+  padding-top: 12px;
+  border-top: 1px solid #ffe0c2;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 4px 0;
+  font-size: 0.95em;
+}
+
+.total-row.total {
+  font-size: 1.1em;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 2px solid #ff6a00;
+}
+
+.total-row.total strong {
+  color: #ff6a00;
+}
+
+@media (max-width: 480px) {
+  .order-card {
+    padding: 12px;
+  }
+  
+  .order-header {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+

@@ -1,0 +1,45 @@
+.primary-btn {
+  --background: linear-gradient(90deg, var(--brand-primary), var(--brand-primary-light));
+  --color: var(--text-inverse);
+  --border-radius: var(--radius-lg);
+  font-weight: var(--font-weight-bold);
+  box-shadow: var(--shadow-brand);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  min-height: var(--touch-target-ideal);
+}
+
+.primary-btn:active:not(:disabled) {
+  transform: scale(0.98);
+  box-shadow: var(--shadow-md);
+}
+
+.primary-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.size-small {
+  height: 40px;
+  font-size: var(--font-size-sm);
+}
+
+.size-default {
+  height: 50px;
+  font-size: var(--font-size-base);
+}
+
+.size-large {
+  height: 56px;
+  font-size: var(--font-size-lg);
+}
+
+.button-spinner {
+  width: 20px;
+  height: 20px;
+  --color: var(--text-inverse);
+}
+
+.loading-text {
+  opacity: 0.8;
+}
+

@@ -1,0 +1,55 @@
+/**
+ * Spacing System - 8px Grid
+ * Based on 8px base unit for consistent spacing throughout the app
+ */
+
+@use "sass:map";
+
+$spacing-base: 8px !default;
+
+$spacing: (
+  'xs': $spacing-base,           // 8px
+  'sm': $spacing-base * 2,       // 16px
+  'md': $spacing-base * 3,       // 24px
+  'lg': $spacing-base * 4,       // 32px
+  'xl': $spacing-base * 6,       // 48px
+  '2xl': $spacing-base * 8,      // 64px
+) !default;
+
+/**
+ * Get spacing value
+ * @param {string} $size - Size key (xs, sm, md, lg, xl, 2xl)
+ * @returns {number} Spacing value in pixels
+ */
+@function spacing($size) {
+  @if map.has-key($spacing, $size) {
+    @return map.get($spacing, $size);
+  }
+  $keys: map.keys($spacing);
+  @warn "Spacing size '#{$size}' not found. Available sizes: #{$keys}";
+  @return $spacing-base;
+}
+
+/**
+ * Spacing utility classes
+ */
+@each $name, $value in $spacing {
+  .p-#{$name} { padding: $value !important; }
+  .pt-#{$name} { padding-top: $value !important; }
+  .pr-#{$name} { padding-right: $value !important; }
+  .pb-#{$name} { padding-bottom: $value !important; }
+  .pl-#{$name} { padding-left: $value !important; }
+  .px-#{$name} { padding-left: $value !important; padding-right: $value !important; }
+  .py-#{$name} { padding-top: $value !important; padding-bottom: $value !important; }
+  
+  .m-#{$name} { margin: $value !important; }
+  .mt-#{$name} { margin-top: $value !important; }
+  .mr-#{$name} { margin-right: $value !important; }
+  .mb-#{$name} { margin-bottom: $value !important; }
+  .ml-#{$name} { margin-left: $value !important; }
+  .mx-#{$name} { margin-left: $value !important; margin-right: $value !important; }
+  .my-#{$name} { margin-top: $value !important; margin-bottom: $value !important; }
+  
+  .gap-#{$name} { gap: $value !important; }
+}
+
